@@ -105,5 +105,24 @@ async def push_error(ctx, error):
         pass
 
 # Run the bot
+# Run the bot
 if __name__ == "__main__":
+    # Start a simple HTTP server for Render's health checks
+    from threading import Thread
+    from http.server import HTTPServer, BaseHTTPRequestHandler
+    
+    class HealthCheck(BaseHTTPRequestHandler):
+        def do_GET(self):
+            self.send_response(200)
+            self.end_headers()
+            self.wfile.write(b'Bot is running!')
+        def log_message(self, format, *args):
+            pass
+    
+    def run_server():
+        port = int(os.getenv('PORT', 8080))
+        server = HTTPServer(('0.0.0.0', port), HealthCheck)
+        server.serve_forever()
+    
+    Thread(target=run_server, daemon=True).start()
     bot.run(DISCORD_TOKEN)
