@@ -4,9 +4,9 @@ import requests
 import os
 
 # Configuration - Replace these with your actual credentials
-DISCORD_TOKEN = 'your_discord_bot_token_here'
-PUSHOVER_USER_KEY = 'your_pushover_user_key_here'
-PUSHOVER_API_TOKEN = 'your_pushover_api_token_here'
+DISCORD_TOKEN = os.getenv('DISCORD_TOKEN')
+PUSHOVER_USER_KEY = os.getenv('PUSHOVER_USER_KEY')
+PUSHOVER_API_TOKEN = os.getenv('PUSHOVER_API_TOKEN')
 
 # Optional: Restrict to specific channel IDs (leave empty list to allow all channels)
 ALLOWED_CHANNELS = []  # Example: [123456789, 987654321]
